@@ -1,9 +1,9 @@
 名前
     PukiWiki - 自由にページを追加・削除・編集できるWebページ構築スクリプト
 
-    Version 1.5.2
+    Version 1.5.3
     Copyright
-      2001-2019 PukiWiki Development Team
+      2001-2020 PukiWiki Development Team
       2001-2002 yu-ji (Based on PukiWiki 1.3 by yu-ji)
     License: GPL version 2 or (at your option) any later version
 
@@ -20,7 +20,7 @@
 概要
     PukiWiki(ぷきうぃき)は、ハイパーテキストを素早く自由に追加・削除・編集で
     きるWebアプリケーション(Wiki, WikiWikiWeb)の一つです。テキストデータから
-    XHTML 1.1 を生成することができ、そのテキストはWebブラウザから何度でも修
+    HTML を生成することができ、そのテキストはWebブラウザから何度でも修
     正することができます。それぞれのページは自然にハイパーリンクで結びつける
     ことができます。
 
@@ -30,7 +30,7 @@
     Webサイト」として情報を提供する構成も可能です。(この場合、Wiki風のデザイ
     ンである必要すらありません)
 
-    PukiWikiはPHP言語で書かれたプログラムなので、PHP(PHP4.1～PHP7.3)が動作す
+    PukiWikiはPHP言語で書かれたプログラムなので、PHP(PHP4.1 - PHP7.4)が動作す
     るWebサーバーであれば容易に設置でき、軽快に動作します。
 
     PukiWikiは、yu-jiさんを含む PukiWiki Develpers Team やその貢献者が、各自の
@@ -261,9 +261,9 @@ Wikiの様子を見る
     YukiWiki のクローン化を許可していただいた結城浩さんに感謝します。
     本家のWikiWikiを作ったCunningham & Cunningham, Inc.に 感謝します。
 
-    * yu-jiさんのホームページ   http://factage.com/yu-ji/
-    * 結城浩さんのホームページ  http://www.hyuki.com/
-    * YukiWikiホームページ      http://www.hyuki.com/yukiwiki/
-    * Tiki          http://todo.org/cgi-bin/tiki/tiki.cgi
-    * 本家WikiWikiWeb       http://c2.com/cgi/wiki?WikiWikiWeb
-    * WikiWikiWebの作者(Cunningham & Cunningham, Inc.) http://c2.com/
+    * yu-jiさんのホームページ   https://factage.com/yu-ji/
+    * 結城浩さんのホームページ  https://www.hyuki.com/
+    * YukiWikiホームページ      https://www.hyuki.com/yukiwiki/
+    * Tiki                      https://tiki.org/
+    * 本家WikiWikiWeb           https://wiki.c2.com/?WikiWikiWeb
+    * WikiWikiWebの作者(Cunningham & Cunningham, Inc.) https://c2.com/

@@ -2,7 +2,7 @@
 // PukiWiki - Yet another WikiWikiWeb clone.
 // pukiwiki.skin.php
 // Copyright
-//   2002-2017 PukiWiki Development Team
+//   2002-2020 PukiWiki Development Team
 //   2001-2002 Originally written by yu-ji
 // License: GPL v2 or (at your option) any later version
 //
@@ -46,7 +46,11 @@ $rw    = ! PKWK_READONLY;
 
 // MenuBar
 $menu = arg_check('read') && exist_plugin_convert('menu') ? do_plugin_convert('menu') : FALSE;
-
+// RightBar
+$rightbar = FALSE;
+if (arg_check('read') && exist_plugin_convert('rightbar')) {
+	$rightbar = do_plugin_convert('rightbar');
+}
 // ------------------------------------------------------------
 // Output
 
@@ -61,6 +65,7 @@ header('Content-Type: text/html; charset=' . CONTENT_CHARSET);
 <html lang="<?php echo LANG ?>">
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CONTENT_CHARSET ?>" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <?php if ($nofollow || ! $is_read)  { ?> <meta name="robots" content="NOINDEX,NOFOLLOW" /><?php } ?>
 <?php if ($html_meta_referrer_policy) { ?> <meta name="referrer" content="<?php echo htmlsc(html_meta_referrer_policy) ?>" /><?php } ?>
 
@@ -153,20 +158,15 @@ function _navigator($key, $value = '', $javascript = ''){
 
 <?php echo $hr ?>
 
+<div id="contents">
+ <div id="body"><?php echo $body ?></div>
 <?php if ($menu !== FALSE) { ?>
-<table border="0" style="width:100%">
- <tr>
-  <td class="menubar">
-   <div id="menubar"><?php echo $menu ?></div>
-  </td>
-  <td valign="top">
-   <div id="body"><?php echo $body ?></div>
-  </td>
- </tr>
-</table>
-<?php } else { ?>
-<div id="body"><?php echo $body ?></div>
+ <div id="menubar"><?php echo $menu ?></div>
 <?php } ?>
+<?php if ($rightbar) { ?>
+ <div id="rightbar"><?php echo $rightbar ?></div>
+<?php } ?>
+</div>
 
 <?php if ($notes != '') { ?>
 <div id="note"><?php echo $notes ?></div>
