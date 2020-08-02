@@ -19,6 +19,7 @@ pre, dl, ol, p, blockquote {
   line-height:130%;
 }
 blockquote {
+  margin-top:0.2em;
   margin-left:32px;
 }
 body,td {
