@@ -12,15 +12,23 @@ define('INSERT_INS',   1); // Order of insertion (1:before the textarea, 0:after
 
 function plugin_insert_action()
 {
+	global $now;
 	global $vars, $cols, $rows;
 	global $_title_collided, $_msg_collided, $_title_updated;
+
+	error_log("insert_action");
 
 	$script = get_base_uri();
 	if (PKWK_READONLY) die_message('PKWK_READONLY prohibits editing');
 	if (! isset($vars['msg']) || $vars['msg'] == '') return;
 
 	$vars['msg'] = preg_replace('/' . "\r" . '/', '', $vars['msg']);
+	$vars['msg'] = preg_replace('/^[^\[h]/m', ' ', $vars['msg']);
+	$vars['msg'] = preg_replace('/\s+$/s', "\n", $vars['msg']);
+
+
 	$insert = ($vars['msg'] != '') ? "\n" . $vars['msg'] . "\n" : '';
+	$insert = "\n&new{".$now."};~\n> ".$vars['msg']."\n";
 
 	$postdata = '';
 	$postdata_old  = get_source($vars['refer']);
@@ -62,6 +70,7 @@ EOD;
 
 		$title = $_title_updated;
 	}
+
 	$retvars['msg']  = $title;
 	$retvars['body'] = $body;
 
