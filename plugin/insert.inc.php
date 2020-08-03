@@ -23,7 +23,7 @@ function plugin_insert_action()
 	if (! isset($vars['msg']) || $vars['msg'] == '') return;
 
 	$vars['msg'] = preg_replace('/' . "\r" . '/', '', $vars['msg']);
-	$vars['msg'] = preg_replace('/^[^\[h]/m', ' ', $vars['msg']);
+	$vars['msg'] = preg_replace('/^([^\[h])/m', ' ${1}', $vars['msg']);
 	$vars['msg'] = preg_replace('/\s+$/s', "\n", $vars['msg']);
 
 
@@ -34,10 +34,11 @@ function plugin_insert_action()
 	$postdata_old  = get_source($vars['refer']);
 	$insert_no = 0;
 
-
+	#
+	# 先頭に挿入する
 	foreach($postdata_old as $line) {
 		if (! INSERT_INS) $postdata .= $line;
-		if (preg_match('/^#insert$/i', $line)) {
+		if (! preg_match('/^#/i', $line)) {
 			if ($insert_no == $vars['insert_no'])
 				$postdata .= $insert;
 			$insert_no++;
@@ -45,9 +46,11 @@ function plugin_insert_action()
 		if (INSERT_INS) $postdata .= $line;
 	}
 
+
 	$postdata_input = $insert . "\n";
 
 	$body = '';
+
 	if (md5(get_source($vars['refer'], TRUE, TRUE)) !== $vars['digest']) {
 		$title = $_title_collided;
 		$body  = $_msg_collided . "\n";
